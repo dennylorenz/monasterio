@@ -1,0 +1,47 @@
+services:
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - certbot_certs:/etc/letsencrypt
+      - certbot_www:/var/www/certbot
+      - ./certbot-renew.sh:/certbot-renew.sh:ro
+    entrypoint: ["sh", "/certbot-renew.sh"]
+    restart: unless-stopped
+
+  mail:
+    image: boky/postfix
+    environment:
+      ALLOWED_SENDER_DOMAINS: "${MAIL_DOMAIN:-monasterio.es}"
+      POSTFIX_myhostname: "${MAIL_DOMAIN:-monasterio.es}"
+    restart: unless-stopped
+
+  monasterio:
+    build: .
+    ports:
+      - "80:3080"
+      - "3001:3001"
+    volumes:
+      - ./data:/app/data
+      - certbot_certs:/etc/letsencrypt:ro
+      - certbot_www:/var/www/certbot
+    env_file:
+      - .env
+    environment:
+      SMTP_HOST: mail
+      SMTP_PORT: "587"
+      SSL_KEY: /etc/letsencrypt/live/chausseestr.dynv6.net/privkey.pem
+      SSL_CERT: /etc/letsencrypt/live/chausseestr.dynv6.net/fullchain.pem
+    depends_on:
+      - mail
+      - certbot
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('https').get({hostname:'localhost',port:3001,path:'/api/verify-pin',rejectUnauthorized:false},r=>process.exit(r.statusCode<500?0:1))"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  certbot_certs:
+  certbot_www:

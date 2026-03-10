@@ -1,0 +1,7 @@
+node_modules
+.env
+data/*.db
+.git
+# Exclude root-level source image (included in public/images/)
+Generated Image March 09, 2026 - 5_30PM.png
+bar.png

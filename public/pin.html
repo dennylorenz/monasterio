@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monasterio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:  #0d0a07;
+      --dark:   #13100c;
+      --gold:   #c9a84c;
+      --cream:  #f5efe6;
+      --muted:  #c8bfb0;
+      --faint:  #5a4e3d;
+      --border: rgba(201,168,76,0.25);
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--black);
+      color: var(--cream);
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at 20% 80%, rgba(201,168,76,0.04) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(201,168,76,0.03) 0%, transparent 50%),
+        var(--black);
+    }
+
+    .pin-card {
+      text-align: center;
+      padding: 64px 56px;
+      border: 1px solid var(--border);
+      background: var(--dark);
+      max-width: 400px;
+      width: calc(100% - 40px);
+      position: relative;
+    }
+
+    .pin-card::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      background: linear-gradient(135deg, rgba(201,168,76,0.2), transparent 50%, rgba(201,168,76,0.1));
+      pointer-events: none;
+    }
+
+    .pin-eyebrow {
+      font-size: 9px;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .pin-logo {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 32px;
+      letter-spacing: 10px;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 8px;
+    }
+
+    .pin-divider {
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      margin: 24px auto;
+    }
+
+    .pin-subtitle {
+      font-size: 13px;
+      color: var(--faint);
+      letter-spacing: 1px;
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+
+    /* PIN dots display */
+    .pin-dots {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .pin-dot {
+      width: 14px;
+      height: 14px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: transparent;
+      transition: all 0.2s ease;
+    }
+
+    .pin-dot.filled {
+      background: var(--gold);
+      border-color: var(--gold);
+      box-shadow: 0 0 8px rgba(201,168,76,0.4);
+    }
+
+    .pin-dot.error {
+      background: #c0392b;
+      border-color: #c0392b;
+      animation: shake 0.3s ease;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25%       { transform: translateX(-4px); }
+      75%       { transform: translateX(4px); }
+    }
+
+    /* Numpad */
+    .numpad {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      max-width: 240px;
+      margin: 0 auto 24px;
+    }
+
+    .num-btn {
+      padding: 18px 8px;
+      background: rgba(201,168,76,0.04);
+      border: 1px solid rgba(201,168,76,0.12);
+      color: var(--cream);
+      font-size: 18px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      border-radius: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .num-btn:hover {
+      background: rgba(201,168,76,0.1);
+      border-color: rgba(201,168,76,0.3);
+      color: var(--gold);
+    }
+
+    .num-btn:active {
+      background: rgba(201,168,76,0.2);
+      transform: scale(0.96);
+    }
+
+    .num-btn.del {
+      font-size: 14px;
+      color: var(--faint);
+      letter-spacing: 1px;
+    }
+
+    .num-btn.zero {
+      grid-column: 2;
+    }
+
+    /* Message */
+    .pin-message {
+      font-size: 12px;
+      letter-spacing: 1px;
+      min-height: 20px;
+      transition: all 0.3s;
+    }
+
+    .pin-message.error  { color: #e07060; }
+    .pin-message.info   { color: var(--faint); }
+    .pin-message.blocked { color: #e07060; }
+
+    /* Blocked state */
+    .blocked-overlay {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .blocked-overlay.show { display: flex; }
+
+    .blocked-icon {
+      width: 48px;
+      height: 48px;
+      border: 1px solid rgba(200,80,60,0.4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+    }
+
+    .blocked-icon svg {
+      width: 22px;
+      stroke: #e07060;
+      fill: none;
+      stroke-width: 1.5;
+    }
+
+    .blocked-text {
+      font-size: 13px;
+      color: #e07060;
+      letter-spacing: 1px;
+    }
+
+    .blocked-timer {
+      font-size: 24px;
+      font-family: 'Playfair Display', serif;
+      color: var(--faint);
+    }
+  </style>
+</head>
+<body>
+  <div class="pin-card">
+    <span class="pin-eyebrow">Palma de Mallorca</span>
+    <div class="pin-logo">MONASTERIO</div>
+    <div class="pin-divider"></div>
+    <p class="pin-subtitle">Acceso privado · Private access</p>
+
+    <!-- Normal PIN entry -->
+    <div id="pin-entry">
+      <div class="pin-dots">
+        <div class="pin-dot" id="d0"></div>
+        <div class="pin-dot" id="d1"></div>
+        <div class="pin-dot" id="d2"></div>
+        <div class="pin-dot" id="d3"></div>
+      </div>
+
+      <div class="numpad">
+        <button class="num-btn" data-n="1">1</button>
+        <button class="num-btn" data-n="2">2</button>
+        <button class="num-btn" data-n="3">3</button>
+        <button class="num-btn" data-n="4">4</button>
+        <button class="num-btn" data-n="5">5</button>
+        <button class="num-btn" data-n="6">6</button>
+        <button class="num-btn" data-n="7">7</button>
+        <button class="num-btn" data-n="8">8</button>
+        <button class="num-btn" data-n="9">9</button>
+        <button class="num-btn zero" data-n="0">0</button>
+        <button class="num-btn del" id="del-btn">⌫</button>
+      </div>
+
+      <div class="pin-message info" id="pin-message">&nbsp;</div>
+    </div>
+
+    <!-- Blocked state -->
+    <div class="blocked-overlay" id="blocked-view">
+      <div class="blocked-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="blocked-text">Acceso bloqueado · Access blocked</div>
+      <div class="blocked-timer" id="blocked-timer">5:00</div>
+      <div class="pin-message blocked">Demasiados intentos incorrectos.<br>Too many incorrect attempts.</div>
+    </div>
+  </div>
+
+  <script>
+    let pin = '';
+    let submitting = false;
+
+    const dots = [0,1,2,3].map(i => document.getElementById('d' + i));
+    const msg  = document.getElementById('pin-message');
+    const entryView   = document.getElementById('pin-entry');
+    const blockedView = document.getElementById('blocked-view');
+    const blockedTimer = document.getElementById('blocked-timer');
+
+    function updateDots(error = false) {
+      dots.forEach((d, i) => {
+        d.classList.remove('filled', 'error');
+        if (i < pin.length) d.classList.add(error ? 'error' : 'filled');
+      });
+    }
+
+    function showBlocked(seconds) {
+      entryView.style.display = 'none';
+      blockedView.classList.add('show');
+      let remaining = seconds;
+      blockedTimer.textContent = formatTime(remaining);
+      const interval = setInterval(() => {
+        remaining--;
+        if (remaining <= 0) {
+          clearInterval(interval);
+          location.reload();
+        } else {
+          blockedTimer.textContent = formatTime(remaining);
+        }
+      }, 1000);
+    }
+
+    function formatTime(s) {
+      const m = Math.floor(s / 60);
+      const sec = s % 60;
+      return `${m}:${String(sec).padStart(2, '0')}`;
+    }
+
+    async function submitPin() {
+      if (submitting) return;
+      submitting = true;
+      msg.className = 'pin-message info';
+      msg.textContent = '...';
+
+      try {
+        const res = await fetch('/api/verify-pin', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ pin }),
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          msg.className = 'pin-message info';
+          msg.textContent = '✓';
+          dots.forEach(d => { d.classList.add('filled'); });
+          setTimeout(() => { window.location.href = '/'; }, 400);
+          return;
+        }
+
+        if (data.blocked) {
+          showBlocked(data.secondsLeft || 300);
+          return;
+        }
+
+        // Wrong pin
+        pin = '';
+        updateDots(true);
+        msg.className = 'pin-message error';
+        const left = data.attemptsLeft;
+        if (left === 0) {
+          showBlocked(300);
+        } else {
+          msg.textContent = left === 1
+            ? 'PIN incorrecto — 1 intento restante'
+            : `PIN incorrecto — ${left} intentos restantes`;
+          setTimeout(() => {
+            updateDots(false);
+            msg.textContent = '\u00a0';
+          }, 800);
+        }
+      } catch {
+        pin = '';
+        updateDots(false);
+        msg.className = 'pin-message error';
+        msg.textContent = 'Error de conexión';
+      } finally {
+        submitting = false;
+      }
+    }
+
+    function press(n) {
+      if (pin.length >= 4 || submitting) return;
+      pin += n;
+      updateDots();
+      if (pin.length === 4) {
+        setTimeout(submitPin, 150);
+      }
+    }
+
+    function del() {
+      if (submitting) return;
+      pin = pin.slice(0, -1);
+      updateDots();
+      msg.textContent = '\u00a0';
+      msg.className = 'pin-message info';
+    }
+
+    document.querySelectorAll('.num-btn[data-n]').forEach(btn => {
+      btn.addEventListener('click', () => press(btn.dataset.n));
+    });
+    document.getElementById('del-btn').addEventListener('click', del);
+
+    // Keyboard support
+    document.addEventListener('keydown', (e) => {
+      if (e.key >= '0' && e.key <= '9') press(e.key);
+      else if (e.key === 'Backspace') del();
+    });
+  </script>
+</body>
+</html>

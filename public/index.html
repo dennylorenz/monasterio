@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Monasterio — Coctelería de autor en Palma de Mallorca. Gin Tonic signature, Bourbon & Whiskey, reservas online.">
+  <title>MONASTERIO — Palma de Mallorca</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVBAR
+       ============================================================ -->
+  <nav id="navbar" role="navigation" aria-label="Main navigation">
+    <a href="#hero" class="nav-logo">Monasterio</a>
+
+    <ul class="nav-links">
+      <li><a href="#menu" data-i18n="nav.menu">Carta</a></li>
+      <li><a href="#reservations" data-i18n="nav.reservations">Reservar</a></li>
+      <li><a href="#reviews" data-i18n="nav.reviews">Reviews</a></li>
+      <li><a href="#about" data-i18n="nav.about">Nosotros</a></li>
+      <li><a href="#contact" data-i18n="nav.contact">Contacto</a></li>
+    </ul>
+
+    <div class="lang-switcher" role="group" aria-label="Language selection">
+      <button class="lang-btn active" data-lang="es" aria-label="Español">ES</button>
+      <button class="lang-btn" data-lang="en" aria-label="English">EN</button>
+      <button class="lang-btn" data-lang="de" aria-label="Deutsch">DE</button>
+      <button class="lang-btn" data-lang="fr" aria-label="Français">FR</button>
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+    <a href="#menu" data-i18n="nav.menu">Carta</a>
+    <a href="#reservations" data-i18n="nav.reservations">Reservar</a>
+    <a href="#reviews" data-i18n="nav.reviews">Reviews</a>
+    <a href="#about" data-i18n="nav.about">Nosotros</a>
+    <a href="#contact" data-i18n="nav.contact">Contacto</a>
+    <div class="mobile-lang">
+      <button class="lang-btn active" data-lang="es">ES</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="de">DE</button>
+      <button class="lang-btn" data-lang="fr">FR</button>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section id="hero" aria-label="Hero">
+    <div class="hero-bg" role="img" aria-label="Interior de Monasterio"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <span class="hero-eyebrow">Palma de Mallorca · Paseo Marítimo</span>
+      <h1 class="hero-title">MONASTERIO</h1>
+      <div class="hero-divider"></div>
+      <p class="hero-tagline" data-i18n="hero.tagline">Coctelería de autor a orillas del Mediterráneo</p>
+      <a href="#reservations" class="btn-primary" data-i18n="hero.cta">Reservar Mesa</a>
+    </div>
+
+    <div class="hero-scroll" aria-hidden="true">
+      <span data-i18n="hero.scroll">Descubrir</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MENU
+       ============================================================ -->
+  <section id="menu" aria-label="Menu">
+    <div class="container">
+
+      <div class="menu-header fade-in">
+        <span class="section-label" data-i18n="menu.title">Nuestra Carta</span>
+        <h2 class="section-title" style="font-style:italic">La Carta</h2>
+        <div class="gold-line"></div>
+        <p class="section-subtitle" data-i18n="menu.subtitle">
+          Ingredientes de primera selección, técnicas de vanguardia y el alma del Mediterráneo en cada copa.
+        </p>
+      </div>
+
+      <!-- Category tabs -->
+      <div class="cat-tabs" role="tablist">
+        <button class="cat-btn active" data-cat="gin" role="tab" aria-selected="true" aria-controls="panel-gin" data-i18n="menu.cat.gin">Gin &amp; Tonic Signature</button>
+        <button class="cat-btn" data-cat="bourbon" role="tab" aria-selected="false" aria-controls="panel-bourbon" data-i18n="menu.cat.bourbon">Bourbon &amp; Whiskey</button>
+        <button class="cat-btn" data-cat="classics" role="tab" aria-selected="false" aria-controls="panel-classics" data-i18n="menu.cat.classics">Cócteles Clásicos</button>
+        <button class="cat-btn" data-cat="noalcohol" role="tab" aria-selected="false" aria-controls="panel-noalcohol" data-i18n="menu.cat.noalcohol">Sin Alcohol</button>
+      </div>
+
+      <!-- Gin & Tonic -->
+      <div class="menu-panel active fade-in" id="panel-gin" role="tabpanel">
+        <div class="menu-grid">
+          <div class="menu-card signature" data-label="Signature">
+            <div class="menu-card-header">
+              <h3 class="menu-card-name" data-i18n="menu.gin.1.name">Monasterio G&amp;T</h3>
+              <span class="menu-card-price">€14</span>
+            </div>
+            <p class="menu-card-desc" data-i18n="menu.gin.1.desc">Gin premium, Fever-Tree Mediterranean, romero fresco, pimienta rosa</p>
+          </div>
+          <div class="menu-card">
+            <div class="menu-card-header">
+              <h3 class="menu-card-name" data-i18n="menu.gin.2.name">Mallorca Bloom</h3>
+              <span class="menu-card-price">€13</span>
+            </div>
+            <p class="menu-card-desc" data-i18n="menu.gin.2.desc">Gin floral, tónica de flor de saúco, hibisco seco, espiral de limón</p>
+          </div>
+          <div class="menu-card">
+            <div class="menu-card-header">
+              <h3 class="menu-card-name" data-i18n="menu.gin.3.name">Mediterranean Garden</h3>
+              <span class="menu-card-price">€13</span>
+            </div>
+            <p class="menu-card-desc" data-i18n="menu.gin.3.desc">Gin pepino, tónica artesanal premium, albahaca, láminas de pepino</p>
+          </div>
+          <div class="menu-card">
+            <div class="menu-card-header">
+              <h3 class="menu-card-name" data-i18n="menu.gin.4.name">Citrus Monk</h3>
+              <span class="menu-card-price">€12</span>
+            </div>
+            <p class="menu-card-desc" data-i18n="menu.gin.4.desc">Gin cítrico, tónica light, ralladura de lima, ramita de tomillo</p>
+          </div>
+          <div class="menu-card">
+            <div class="menu-card-header">
+              <h3 class="menu-card-name" data-i18n="menu.gin.5.name">Golden Sunset</h3>
+              <span class="menu-card-price">€15</span>
+            </div>
+            <p class="menu-card-desc" data-i18n="menu.gin.5.desc">Gin envejecido en barrica, tónica de jengibre, naranja sanguina, canela</p>
+          </div>
+          <div class="menu-card">
+            <div class="menu-card-header">
+              <h3 class="menu-card-name" data-i18n="menu.gin.6.name">Black Monk</h3>
+              <span class="menu-card-price">€14</span>
+            </div>
+            <p class="menu-card-desc" data-i18n="menu.gin.6.desc">Gin marino con carbón activo, tónica negra, aceitunas arbequinas, sal marina</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bourbon & Whiskey -->
+      <div class="menu-panel fade-in" id="panel-bourbon" role="tabpanel">
+        <div class="menu-grid">
+          <div class="menu-card signature" data-label="Signature">
+            <div class="menu-card-header">
+              <h3 class="menu-card-name" data-i18n="menu.bourbon.1.name">Old Fashioned Monasterio</h3>
+              <span class="menu-card-price">€15</span>
+            </div>
+            <p class="menu-card-desc" data-i18n="menu.bourbon.1.desc">Bourbon premium añejado, angostura artesanal, azúcar de caña, amplia piel de naranja</p>
+          </div>
+          <div class="menu-card">
+            <div class="menu-card-header">
+              <h3 class="menu-card-name" data-i18n="menu.bourbon.2.name">Mallorca Sour</h3>
+              <span class="menu-card-price">€14</span>
+            </div>
+            <p class="menu-card-desc" data-i18n="menu.bourbon.2.desc">Bourbon, zumo de limón fresco, clara de huevo, jarabe de romero silvestre</p>
+          </div>
+          <div class="menu-card">
+            <div class="menu-card-header">
+              <h3 class="menu-card-name" data-i18n="menu.bourbon.3.name">Sunset Strip</h3>
+              <span class="menu-card-price">€13</span>
+            </div>
+            <p class="menu-card-desc" data-i18n="menu.bourbon.3.desc">Bourbon, licor de melocotón mallorquín, cerveza de jengibre, zumo de limón</p>
+          </div>
+          <div class="menu-card">
+            <div class="menu-card-header">
+              <h3 class="menu-card-name" data-i18n="menu.bourbon.4.name">Monk's Manhattan</h3>
+              <span class="menu-card-price">€15</span>
+            </div>
+            <p class="menu-card-desc" data-i18n="menu.bourbon.4.desc">Rye whiskey americano, vermut rojo Carpano, cereza al marrasquino, angostura</p>
+          </div>
+          <div class="menu-card">
+            <div class="menu-card-header">
+              <h3 class="menu-card-name" data-i18n="menu.bourbon.5.name">Smoky Tramuntana</h3>
+              <span class="menu-card-price">€16</span>
+            </div>
+            <p class="menu-card-desc" data-i18n="menu.bourbon.5.desc">Whisky ahumado de Islay, miel de Mallorca, zumo de limón, ramita de tomillo</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cócteles Clásicos -->
+      <div class="menu-panel fade-in" id="panel-classics" role="tabpanel">
+        <div class="menu-grid">
+          <div class="menu-card">
+            <div class="menu-card-header">
+              <h3 class="menu-card-name" data-i18n="menu.classics.1.name">Negroni</h3>
+              <span class="menu-card-price">€13</span>
+            </div>
+            <p class="menu-card-desc" data-i18n="menu.classics.1.desc">Gin de selección, Campari, vermut rojo, amplia piel de naranja</p>
+          </div>
+          <div class="menu-card">
+            <div class="menu-card-header">
+              <h3 class="menu-card-name" data-i18n="menu.classics.2.name">Mojito Mallorquín</h3>
+              <span class="menu-card-price">€12</span>
+            </div>
+            <p class="menu-card-desc" data-i18n="menu.classics.2.desc">Ron cubano añejo, menta fresca de huerta, lima exprimida, azúcar de caña, soda</p>
+          </div>
+          <div class="menu-card">
+            <div class="menu-card-header">
+              <h3 class="menu-card-name" data-i18n="menu.classics.3.name">Paloma Mediterránea</h3>
+              <span class="menu-card-price">€13</span>
+            </div>
+            <p class="menu-card-desc" data-i18n="menu.classics.3.desc">Tequila reposado, pomelo rosa fresco, licor de pomelo, sal marina en el borde</p>
+          </div>
+          <div class="menu-card">
+            <div class="menu-card-header">
+              <h3 class="menu-card-name" data-i18n="menu.classics.4.name">Aperitivo Monasterio</h3>
+              <span class="menu-card-price">€11</span>
+            </div>
+            <p class="menu-card-desc" data-i18n="menu.classics.4.desc">Aperol, cava mallorquín brut, soda Fever-Tree, rodaja de naranja</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sin Alcohol -->
+      <div class="menu-panel fade-in" id="panel-noalcohol" role="tabpanel">
+        <div class="menu-grid">
+          <div class="menu-card">
+            <div class="menu-card-header">
+              <h3 class="menu-card-name" data-i18n="menu.noalcohol.1.name">Virgin Monk</h3>
+              <span class="menu-card-price">€9</span>
+            </div>
+            <p class="menu-card-desc" data-i18n="menu.noalcohol.1.desc">Flor de saúco, pepino fresco, tónica premium, menta, espiral de lima</p>
+          </div>
+          <div class="menu-card">
+            <div class="menu-card-header">
+              <h3 class="menu-card-name" data-i18n="menu.noalcohol.2.name">Atardecer Mallorquín</h3>
+              <span class="menu-card-price">€9</span>
+            </div>
+            <p class="menu-card-desc" data-i18n="menu.noalcohol.2.desc">Mango maduro, maracuyá, zumo de lima fresco, soda, jengibre, flores comestibles</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       RESERVATIONS
+       ============================================================ -->
+  <section id="reservations" aria-label="Reservations">
+    <div class="container">
+      <div class="res-wrapper">
+
+        <!-- Info panel -->
+        <div class="res-info fade-in">
+          <span class="section-label" data-i18n="nav.reservations">Reservar</span>
+          <h2 class="section-title" data-i18n="reservations.title">Reservar Mesa</h2>
+          <div class="gold-line"></div>
+          <p class="section-subtitle" data-i18n="reservations.subtitle">
+            Le esperamos en primera línea de mar. Haga su reserva y le confirmaremos en breve.
+          </p>
+
+          <div class="res-info-item">
+            <span class="res-info-label" data-i18n="contact.address.label">Dirección</span>
+            <p class="res-info-value" data-i18n="contact.address.value">Paseo Marítimo 12, 07014 Palma de Mallorca</p>
+          </div>
+          <div class="res-info-item">
+            <span class="res-info-label" data-i18n="contact.hours.label">Horario</span>
+            <p class="res-info-value">
+              <span data-i18n="contact.hours.weekday">Martes — Jueves: 19:00 — 02:00</span><br>
+              <span data-i18n="contact.hours.weekend">Viernes — Domingo: 18:00 — 03:00</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="res-form fade-in" role="form" aria-label="Reservation form">
+          <form id="reservation-form" novalidate>
+            <input type="hidden" id="form-lang" name="lang" value="es">
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="res-name" data-i18n="reservations.name">Nombre y Apellido</label>
+                <input type="text" id="res-name" name="name" required
+                       data-i18n-placeholder="reservations.name" placeholder="Nombre y Apellido">
+              </div>
+              <div class="form-group">
+                <label for="res-email" data-i18n="reservations.email">Correo Electrónico</label>
+                <input type="email" id="res-email" name="email" required
+                       data-i18n-placeholder="reservations.email" placeholder="Correo Electrónico">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="res-phone" data-i18n="reservations.phone">Teléfono (opcional)</label>
+                <input type="tel" id="res-phone" name="phone"
+                       data-i18n-placeholder="reservations.phone" placeholder="Teléfono (opcional)">
+              </div>
+              <div class="form-group">
+                <label for="res-guests" data-i18n="reservations.guests">Número de Personas</label>
+                <select id="res-guests" name="guests" required>
+                  <option value="" data-i18n-value="reservations.guests.placeholder">Seleccionar</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="res-date" data-i18n="reservations.date">Fecha</label>
+                <input type="date" id="res-date" name="date" required>
+              </div>
+              <div class="form-group">
+                <label for="res-time" data-i18n="reservations.time">Hora</label>
+                <select id="res-time" name="time" required>
+                  <option value="" data-i18n-value="reservations.time.placeholder">Seleccionar hora</option>
+                  <option value="18:00">18:00</option>
+                  <option value="18:30">18:30</option>
+                  <option value="19:00">19:00</option>
+                  <option value="19:30">19:30</option>
+                  <option value="20:00">20:00</option>
+                  <option value="20:30">20:30</option>
+                  <option value="21:00">21:00</option>
+                  <option value="21:30">21:30</option>
+                  <option value="22:00">22:00</option>
+                  <option value="22:30">22:30</option>
+                  <option value="23:00">23:00</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="res-notes" data-i18n="reservations.notes">Peticiones especiales (opcional)</label>
+              <textarea id="res-notes" name="notes" rows="3"
+                        data-i18n-placeholder="reservations.notes" placeholder="Peticiones especiales (opcional)"></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit" id="submit-btn">
+              <span data-i18n="reservations.submit">Solicitar Reserva</span>
+            </button>
+
+            <div class="form-message success" id="form-success" role="alert" data-i18n="reservations.success">
+              ¡Reserva recibida! Le enviaremos una confirmación por correo electrónico en breve.
+            </div>
+            <div class="form-message error" id="form-error" role="alert" data-i18n="reservations.error">
+              Hubo un problema al enviar su reserva. Por favor, inténtelo de nuevo.
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       REVIEWS
+       ============================================================ -->
+  <section id="reviews" aria-label="Reviews">
+    <div class="container">
+      <div class="reviews-header fade-in">
+        <span class="section-label" data-i18n="nav.reviews">Reviews</span>
+        <h2 class="section-title" style="font-style:italic" data-i18n="reviews.title">Lo que dicen nuestros clientes</h2>
+        <div class="gold-line" style="margin:24px auto"></div>
+
+        <!-- Aggregate rating -->
+        <div class="rating-summary fade-in">
+          <div class="rating-score">4.9</div>
+          <div class="rating-right">
+            <div class="rating-stars" aria-label="4.9 out of 5 stars">
+              ★★★★★
+            </div>
+            <div class="rating-count" data-i18n="reviews.count">342 reseñas</div>
+            <div class="rating-source">Google Reviews</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review cards -->
+      <div class="reviews-grid">
+
+        <article class="review-card fade-in" data-full="review-full-1">
+          <div class="review-stars" aria-label="5 stars">★★★★★</div>
+          <blockquote class="review-text">
+            "El ambiente es simplemente mágico. La música en directo los viernes crea una atmósfera que no olvidarás. El Monasterio G&T con romero y pimienta rosa es el mejor gin tonic que he probado en mi vida..."
+          </blockquote>
+          <footer class="review-footer">
+            <div class="review-avatar">C</div>
+            <div>
+              <div class="review-name">Carlos M.</div>
+              <div class="review-location">Palma de Mallorca · hace 2 semanas</div>
+            </div>
+          </footer>
+        </article>
+
+        <article class="review-card fade-in" data-full="review-full-2">
+          <div class="review-stars" aria-label="5 stars">★★★★★</div>
+          <blockquote class="review-text">
+            "The perfect start to a Palma evening. Live jazz, warm golden light, and the most extraordinary gin & tonic I've ever had. The Monasterio G&T with rosemary was divine..."
+          </blockquote>
+          <footer class="review-footer">
+            <div class="review-avatar">J</div>
+            <div>
+              <div class="review-name">James T.</div>
+              <div class="review-location">London, UK · 1 month ago</div>
+            </div>
+          </footer>
+        </article>
+
+        <article class="review-card fade-in" data-full="review-full-3">
+          <div class="review-stars" aria-label="5 stars">★★★★★</div>
+          <blockquote class="review-text">
+            "Fui con mi pareja buscando el lugar perfecto para empezar la noche. El dueño nos recibió como viejos amigos y nos recomendó el Old Fashioned Monasterio. Absolutamente exquisito..."
+          </blockquote>
+          <footer class="review-footer">
+            <div class="review-avatar">A</div>
+            <div>
+              <div class="review-name">Ana R.</div>
+              <div class="review-location">Madrid · hace 3 semanas</div>
+            </div>
+          </footer>
+        </article>
+
+        <article class="review-card fade-in" data-full="review-full-4">
+          <div class="review-stars" aria-label="5 stars">★★★★★</div>
+          <blockquote class="review-text">
+            "The owner made us feel like VIPs from the moment we walked in. The cocktails are works of art. We had the Monk's Manhattan and Mallorca Sour — both were extraordinary..."
+          </blockquote>
+          <footer class="review-footer">
+            <div class="review-avatar">S</div>
+            <div>
+              <div class="review-name">Sophie K.</div>
+              <div class="review-location">Berlin, Germany · 3 weeks ago</div>
+            </div>
+          </footer>
+        </article>
+
+        <article class="review-card fade-in" data-full="review-full-5">
+          <div class="review-stars" aria-label="5 stars">★★★★★</div>
+          <blockquote class="review-text">
+            "Empezamos aquí una noche que nunca olvidaremos. Música en vivo, dueño encantador y el Smoky Tramuntana con whisky ahumado y miel de Mallorca fue una revelación absoluta..."
+          </blockquote>
+          <footer class="review-footer">
+            <div class="review-avatar">S</div>
+            <div>
+              <div class="review-name">Sergio D.</div>
+              <div class="review-location">Valencia · hace 1 mes</div>
+            </div>
+          </footer>
+        </article>
+
+        <article class="review-card fade-in" data-full="review-full-6">
+          <div class="review-stars" aria-label="5 stars">★★★★★</div>
+          <blockquote class="review-text">
+            "Live music, a stunning terrace by the sea, and bartenders who are genuine artists. The Mallorca Bloom with elderflower and hibiscus was outstanding. Best bar in Mallorca, without question..."
+          </blockquote>
+          <footer class="review-footer">
+            <div class="review-avatar">M</div>
+            <div>
+              <div class="review-name">Marco L.</div>
+              <div class="review-location">Milan, Italy · 2 months ago</div>
+            </div>
+          </footer>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Review modals -->
+  <div class="review-modal-overlay" id="review-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="review-modal">
+      <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+      <div class="review-stars modal-stars" id="modal-stars">★★★★★</div>
+      <blockquote class="modal-text" id="modal-text"></blockquote>
+      <footer class="review-footer modal-footer" id="modal-footer"></footer>
+    </div>
+  </div>
+
+  <!-- Full review texts (hidden) -->
+  <div hidden>
+    <div id="review-full-1">
+      <p>El ambiente es simplemente mágico. La música en directo los viernes crea una atmósfera que no olvidarás. El Monasterio G&T con romero fresco y pimienta rosa es el mejor gin tonic que he probado en mi vida. Los bartenders son artistas de verdad y el dueño, siempre presente, hace que te sientas como en casa. El lugar perfecto para empezar una noche en Palma o para disfrutar de una velada completa. ¡Volveré sin duda!</p>
+      <footer data-name="Carlos M." data-location="Palma de Mallorca · hace 2 semanas" data-avatar="C"></footer>
+    </div>
+    <div id="review-full-2">
+      <p>The perfect start to a Palma evening. The atmosphere is unmatched — warm golden light, live jazz playing softly, and the most extraordinary gin & tonic I've ever had. The Monasterio G&T with fresh rosemary and Mediterranean tonic was divine. Staff are attentive and knowledgeable. The bar itself is stunning — dark wood, marble, and gold accents. We ended up staying for three cocktails instead of one. Highly, highly recommended.</p>
+      <footer data-name="James T." data-location="London, UK · 1 month ago" data-avatar="J"></footer>
+    </div>
+    <div id="review-full-3">
+      <p>Fui con mi pareja buscando el lugar perfecto para empezar la noche en Palma. Monasterio superó todas las expectativas. El dueño nos recibió como si fuéramos viejos amigos y nos recomendó el Old Fashioned Monasterio: bourbon añejado, angostura artesanal y una piel de naranja perfectamente cortada. Absolutamente exquisito. La decoración es elegante sin ser pretenciosa, y la música en directo los fines de semana añade una magia especial. Sin duda el mejor bar de cócteles de Palma.</p>
+      <footer data-name="Ana R." data-location="Madrid · hace 3 semanas" data-avatar="A"></footer>
+    </div>
+    <div id="review-full-4">
+      <p>The owner made us feel like absolute VIPs from the moment we walked through the door. He personally recommended cocktails based on our mood and preferences — an experience you rarely find anywhere. We had the Monk's Manhattan and the Mallorca Sour, both of which were extraordinary. The bar is intimate and impossibly chic. Perfect for couples or a sophisticated night out. We'll definitely return next time we visit Mallorca.</p>
+      <footer data-name="Sophie K." data-location="Berlin, Germany · 3 weeks ago" data-avatar="S"></footer>
+    </div>
+    <div id="review-full-5">
+      <p>Empezamos aquí una noche que nunca olvidaremos. Música en vivo de jazz, un dueño absolutamente encantador que conoce cada ingrediente de su carta a la perfección, y el Smoky Tramuntana con whisky ahumado de Islay y miel de Mallorca fue una revelación absoluta. El ambiente es sofisticado pero sin ser frío. El Paseo Marítimo tiene muchos bares, pero Monasterio está en otra liga. 10 sobre 10, sin ninguna duda.</p>
+      <footer data-name="Sergio D." data-location="Valencia · hace 1 mes" data-avatar="S"></footer>
+    </div>
+    <div id="review-full-6">
+      <p>Monasterio is in a league of its own on the Paseo Marítimo. Live music on the weekends, a gorgeous terrace with sea views, and a team of bartenders who are genuine passionate artists. The Mallorca Bloom with floral gin, elderflower tonic and hibiscus was the best cocktail I had in all of Mallorca. The vibe is sophisticated, intimate, and perfect for starting a great night. Best bar on the island, without question. We came back three nights in a row.</p>
+      <footer data-name="Marco L." data-location="Milan, Italy · 2 months ago" data-avatar="M"></footer>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       ABOUT
+       ============================================================ -->
+  <section id="about" aria-label="About">
+    <div class="container">
+      <div class="about-wrapper">
+
+        <div class="about-image fade-in">
+          <img src="/images/bar.png" alt="Interior de Monasterio, Palma de Mallorca" loading="lazy">
+        </div>
+
+        <div class="about-text fade-in">
+          <span class="section-label" data-i18n="nav.about">Nosotros</span>
+          <h2 class="section-title" data-i18n="about.title">Nuestra Historia</h2>
+          <div class="gold-line"></div>
+          <p data-i18n="about.p1">Monasterio nació del deseo de crear un refugio de elegancia en el corazón de Palma de Mallorca. A orillas del Mediterráneo, en el icónico Paseo Marítimo, cada detalle ha sido concebido para transportarle a un mundo de sensaciones únicas.</p>
+          <p data-i18n="about.p2">Nuestros bartenders, formados en las mejores cocteleras del mundo, elevan cada combinación a una obra de arte. Utilizamos únicamente ingredientes de primera calidad: gins artesanales, bourbons de edición limitada y productos locales mallorquines que capturan la esencia de la isla.</p>
+          <p data-i18n="about.p3">El nombre Monasterio evoca la profundidad y el silencio de los antiguos monasterios de la isla, ese instante de pausa en el que el tiempo se detiene y los sentidos despiertan.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CONTACT
+       ============================================================ -->
+  <section id="contact" aria-label="Contact">
+    <div class="container">
+      <div class="contact-wrapper">
+
+        <div class="contact-info fade-in">
+          <span class="section-label" data-i18n="nav.contact">Contacto</span>
+          <h2 class="section-title" data-i18n="contact.title">Encuéntrenos</h2>
+          <div class="gold-line"></div>
+
+          <div class="contact-block">
+            <span class="contact-block-label" data-i18n="contact.address.label">Dirección</span>
+            <p data-i18n="contact.address.value">Paseo Marítimo 12, 07014 Palma de Mallorca</p>
+          </div>
+
+          <div class="contact-block">
+            <span class="contact-block-label" data-i18n="contact.hours.label">Horario</span>
+            <p>
+              <span data-i18n="contact.hours.weekday">Martes — Jueves: 19:00 — 02:00</span><br>
+              <span data-i18n="contact.hours.weekend">Viernes — Domingo: 18:00 — 03:00</span>
+            </p>
+          </div>
+
+          <div class="contact-block">
+            <span class="contact-block-label" data-i18n="contact.follow">Síguenos</span>
+            <a href="https://www.instagram.com/monasterio_palma" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram @monasterio_palma">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <circle cx="12" cy="12" r="4"/>
+                <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+              </svg>
+              @monasterio_palma
+            </a>
+          </div>
+        </div>
+
+        <div class="map-container fade-in">
+          <iframe
+            title="Monasterio location on Google Maps"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3073.5!2d2.6419!3d39.5690!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMznCsDM0JzA4LjQiTiAywrAzOCczMC44IkU!5e0!3m2!1ses!2ses!4v1"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer role="contentinfo">
+    <div class="footer-logo">Monasterio</div>
+    <div class="footer-divider"></div>
+    <p class="footer-made" data-i18n="footer.made">Hecho con pasión en Palma de Mallorca</p>
+    <p class="footer-rights">&copy; <span id="year"></span> Monasterio · <span data-i18n="footer.rights">Todos los derechos reservados.</span></p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  <script src="/js/i18n.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/reviews.js"></script>
+</body>
+</html>
