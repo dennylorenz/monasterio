@@ -1,3 +1,34 @@
+function launchHearts() {
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+  const count = 45;
+
+  for (let i = 0; i < count; i++) {
+    setTimeout(() => {
+      const h = document.createElement('span');
+      h.className = 'sparkle-heart';
+      h.textContent = '♥';
+
+      const startX = Math.random() * vw;
+      const startY = vh * 0.35 + Math.random() * vh * 0.65;
+      const sx     = (Math.random() - 0.5) * 220;
+      const ty     = -(vh * (0.55 + Math.random() * 0.5));
+      const dur    = (1.8 + Math.random() * 1.6).toFixed(2);
+      const size   = (28 + Math.random() * 42).toFixed(0);
+
+      h.style.left = startX + 'px';
+      h.style.top  = startY + 'px';
+      h.style.setProperty('--sx',  sx  + 'px');
+      h.style.setProperty('--ty',  ty  + 'px');
+      h.style.setProperty('--dur', dur + 's');
+      h.style.fontSize = size + 'px';
+
+      document.body.appendChild(h);
+      setTimeout(() => h.remove(), (parseFloat(dur) + 0.2) * 1000);
+    }, i * 55);
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   // --- Navbar scroll effect ---
   const nav = document.getElementById('navbar');
@@ -107,6 +138,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (res.ok) {
           form.reset();
           successMsg.style.display = 'block';
+          successMsg.classList.remove('animate');
+          void successMsg.offsetWidth; // restart animation
+          successMsg.classList.add('animate');
+          launchHearts();
           successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         } else {
           throw new Error('Server error');

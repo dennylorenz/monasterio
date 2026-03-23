@@ -7,6 +7,7 @@ const crypto = require('crypto');
 const path = require('path');
 const db = require('./db');
 const { sendReservationEmail } = require('./email');
+const { sendTelegramNotification } = require('./telegram');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -123,6 +124,7 @@ app.post('/api/reservations', async (req, res) => {
       lang: lang || 'es',
     });
     sendReservationEmail(reservation).catch((err) => console.error('[email] Failed:', err.message));
+    sendTelegramNotification(reservation).catch((err) => console.error('[telegram] Failed:', err.message));
     res.status(201).json({ success: true, id: reservation.id });
   } catch (err) {
     console.error('[reservation] Error:', err.message);
